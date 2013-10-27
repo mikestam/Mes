@@ -1,0 +1,14 @@
+﻿<Application x:Class="Mes.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+    <Application.Resources>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary ResourceDictionary.Source="pack://application:,,,/Mes.UI;component/Assets/Styles.xaml" />
+            <ResourceDictionary ResourceDictionary.Source="pack://application:,,,/Mes.UI;component/Assets/Buttons.xaml" />
+            <ResourceDictionary ResourceDictionary.Source="pack://application:,,,/Mes.UI;component/Assets/Controls.xaml" />
+            <ResourceDictionary ResourceDictionary.Source="pack://application:,,,/Mes.UI;component/Assets/Paths.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+
+    </Application.Resources>
+</Application>

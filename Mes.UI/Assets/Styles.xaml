@@ -1,0 +1,107 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <Color x:Key="GitHubAccentColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #4ea6ea
+    </Color>
+    <SolidColorBrush x:Key="GitHubAccentBrush" SolidColorBrush.Color="{StaticResource GitHubAccentColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <SolidColorBrush x:Key="GitHubModalViewBackground" SolidColorBrush.Color="#333333" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHTextColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #666
+    </Color>
+    <SolidColorBrush x:Key="GHTextBrush" SolidColorBrush.Color="{StaticResource GHTextColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHTextSecondaryColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #999
+    </Color>
+    <SolidColorBrush x:Key="GHTextSecondaryBrush" SolidColorBrush.Color="{StaticResource GHTextSecondaryColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonTextColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #666
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonTextBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonTextColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #c2c2c2
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonHoverColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #242424
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonHoverBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonHoverColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonHoverIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #666
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonHoverIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonHoverIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonPressedColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #121212
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonPressedBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonPressedColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHLinkButtonPressedIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #121212
+    </Color>
+    <SolidColorBrush x:Key="GHLinkButtonPressedIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonPressedIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonTextColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #999
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonTextBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonTextColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #999
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonHoverColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #dedede
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonHoverBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonHoverColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonHoverIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #dedede
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonHoverIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonHoverIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonPressedColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #a7a7a7
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonPressedBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonPressedColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHDarkLinkButtonPressedIconColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #a7a7a7
+    </Color>
+    <SolidColorBrush x:Key="GHDarkLinkButtonPressedIconBrush" SolidColorBrush.Color="{StaticResource GHLinkButtonPressedIconColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxDividerColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #f1f1f1
+    </Color>
+    <SolidColorBrush x:Key="GHBoxDividerBrush" SolidColorBrush.Color="{StaticResource GHBoxDividerColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxHoverBackgroundColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #f1f1f1
+    </Color>
+    <SolidColorBrush x:Key="GHBoxHoverBackgroundBrush" SolidColorBrush.Color="{StaticResource GHBoxHoverBackgroundColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxPressedBackgroundColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #e7e7e7
+    </Color>
+    <SolidColorBrush x:Key="GHBoxPressedBackgroundBrush" SolidColorBrush.Color="{StaticResource GHBoxPressedBackgroundColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxSelectedBackgroundColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #4ea6ea
+    </Color>
+    <SolidColorBrush x:Key="GHBoxSelectedBackgroundBrush" SolidColorBrush.Color="{StaticResource GHBoxSelectedBackgroundColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxSelectedPressedBackgroundColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #439bde
+    </Color>
+    <SolidColorBrush x:Key="GHBoxSelectedPressedBackgroundBrush" SolidColorBrush.Color="{StaticResource GHBoxSelectedPressedBackgroundColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxSelectedColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #ffffff
+    </Color>
+    <SolidColorBrush x:Key="GHBoxSelectedBrush" SolidColorBrush.Color="{StaticResource GHBoxSelectedColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <Color x:Key="GHBoxSelectedSecondaryColor" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        #c5e6ff
+    </Color>
+    <SolidColorBrush x:Key="GHBoxSelectedSecondaryBrush" SolidColorBrush.Color="{StaticResource GHBoxSelectedSecondaryColor}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <SolidColorBrush x:Key="GitHubRed" SolidColorBrush.Color="#ea2828" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <FontFamily x:Key="GitHubFontFamilyNormal" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        Segoe UI
+    </FontFamily>
+    <FontFamily x:Key="GitHubFontFamilyOcticons" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        /GitHub.UI;component/Assets/Fonts/#GitHub Octicons
+    </FontFamily>
+    <GridLength x:Key="ModalViewLeftOffsetColumnWidth" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        236
+    </GridLength>
+    <QuinticEase x:Key="GitHubDefaultEaseInOut" EasingFunctionBase.EasingMode="EaseInOut" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <QuinticEase x:Key="GitHubDefaultEaseIn" EasingFunctionBase.EasingMode="EaseIn" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    <QuinticEase x:Key="GitHubDefaultEaseOut" EasingFunctionBase.EasingMode="EaseOut" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+</ResourceDictionary>
+ 
+
+ 

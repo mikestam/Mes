@@ -1,0 +1,415 @@
+﻿<Window x:Class="Mes.Views.ShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Views="clr-namespace:Mes.Views;assembly=Mes,Version=1.0.0.0,Culture=neutral,PublicKeyToken=null"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Control.Background="#FFFFFFFF" 
+             Window.Icon="/Images/App.ico" 
+             Window.WindowStartupLocation="CenterScreen" 
+             UIElement.AllowDrop="False"
+             FrameworkElement.MinWidth="650" 
+             FrameworkElement.MinHeight="300" FrameworkElement.Width="1224" FrameworkElement.Height="672"
+             FrameworkElement.Style="{DynamicResource GitHubWindowStyle}"
+            >
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <ControlTemplate ControlTemplate.TargetType="{x:Type Window}">
+                <Border Border.BorderBrush="{TemplateBinding Control.BorderBrush}" Border.BorderThickness="{TemplateBinding Control.BorderThickness}" Border.Background="{TemplateBinding Control.Background}">
+                    <Grid>
+                        <AdornerDecorator>
+                            <ContentPresenter />
+                        </AdornerDecorator>
+                        <ResizeGrip ResizeGrip.Name="WindowResizeGrip" FrameworkElement.HorizontalAlignment="Right" Control.IsTabStop="False" UIElement.Visibility="Collapsed" FrameworkElement.VerticalAlignment="Bottom" FrameworkElement.Style="{DynamicResource GitHubResizeGripStyle}" />
+                    </Grid>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <MultiTrigger x:Key="WindowTemplateKey" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                        <MultiTrigger.Conditions>
+                            <Condition Condition.Property="Window.ResizeMode" Condition.Value="CanResizeWithGrip" />
+                            <Condition Condition.Property="Window.WindowState" Condition.Value="Normal" />
+                        </MultiTrigger.Conditions>
+                        <Setter Setter.TargetName="WindowResizeGrip" Setter.Property="UIElement.Visibility" Setter.Value="Visible" />
+                    </MultiTrigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <Style Style.TargetType="{x:Type Window}">
+                <Setter Setter.Property="Control.Foreground" Setter.Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+                <Setter Setter.Property="Control.Background" Setter.Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+                <Setter Setter.Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate ControlTemplate.TargetType="{x:Type Window}">
+                            <Border Border.BorderBrush="{TemplateBinding Control.BorderBrush}" Border.BorderThickness="{TemplateBinding Control.BorderThickness}" Border.Background="{TemplateBinding Control.Background}">
+                                <AdornerDecorator>
+                                    <ContentPresenter />
+                                </AdornerDecorator>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Trigger.Property="Window.ResizeMode" Trigger.Value="CanResizeWithGrip">
+                        <Setter Setter.Property="Control.Template" Setter.Value="{StaticResource WindowTemplateKey}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <LinearGradientBrush LinearGradientBrush.EndPoint="1,0.75" LinearGradientBrush.StartPoint="0,0.25">
+                <GradientStop GradientStop.Color="Transparent" GradientStop.Offset="0.3" />
+                <GradientStop GradientStop.Color="#666" GradientStop.Offset="0.75" />
+                <GradientStop GradientStop.Color="#999" GradientStop.Offset="1" />
+            </LinearGradientBrush>
+            <Style Style.TargetType="{x:Type ResizeGrip}">
+                <Setter Setter.Property="FrameworkElement.MinWidth" Setter.Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+                <Setter Setter.Property="FrameworkElement.MinHeight" Setter.Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}" />
+                <Setter Setter.Property="Control.Background" Setter.Value="#00FFFFFF" />
+                <Setter Setter.Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate ControlTemplate.TargetType="{x:Type ResizeGrip}">
+                            <Grid Panel.Background="{TemplateBinding Control.Background}" UIElement.SnapsToDevicePixels="True">
+                                <Path Path.Data="M9,3L11,3 11,11 3,11 3,9 6,9 6,6 9,6z" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.Margin="0,0,2,2" FrameworkElement.VerticalAlignment="Bottom">
+                                    <Shape.Fill>
+                                        <DrawingBrush TileBrush.TileMode="Tile" TileBrush.Viewbox="0,0,3,3" TileBrush.Viewport="0,0,3,3" TileBrush.ViewportUnits="Absolute" TileBrush.ViewboxUnits="Absolute">
+                                            <DrawingBrush.Drawing>
+                                                <DrawingGroup>
+                                                    <GeometryDrawing GeometryDrawing.Brush="{StaticResource WindowTemplateKey}" GeometryDrawing.Geometry="M0,0L2,0 2,2 0,2z" />
+                                                </DrawingGroup>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </Shape.Fill>
+                                </Path>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Interaction.Behaviors xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <ui:BorderlessWindowBehavior xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+    </Interaction.Behaviors>
+    <Window.TaskbarItemInfo xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <TaskbarItemInfo x:Name="progressBar" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+    </Window.TaskbarItemInfo>
+    <Grid Grid.Name="LayoutRoot" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition VisualTransition.GeneratedDuration="0:0:0.3">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <PowerEase EasingFunctionBase.EasingMode="EaseInOut" PowerEase.Power="3" />
+                        </VisualTransition.GeneratedEasingFunction>
+                    </VisualTransition>
+                    <VisualTransition VisualTransition.From="UndoFlash" VisualTransition.GeneratedDuration="0:0:0.3" ExtendedVisualStateManager.TransitionEffect="{x:Null}">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <PowerEase EasingFunctionBase.EasingMode="EaseInOut" PowerEase.Power="3" />
+                        </VisualTransition.GeneratedEasingFunction>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="undoFlashView">
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0:0:0.7" DoubleKeyFrame.Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingFunctionBase.EasingMode="EaseInOut" PowerEase.Power="3" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="undoFlashView">
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0:0:0.7" DoubleKeyFrame.Value="100">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingFunctionBase.EasingMode="EaseInOut" PowerEase.Power="3" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualTransition>
+                    <VisualTransition VisualTransition.From="Base" VisualTransition.GeneratedDuration="0:0:0.3" ExtendedVisualStateManager.TransitionEffect="{x:Null}">
+                        <VisualTransition.GeneratedEasingFunction>
+                            <ElasticEase EasingFunctionBase.EasingMode="EaseInOut" ElasticEase.Springiness="6" ElasticEase.Oscillations="7" />
+                        </VisualTransition.GeneratedEasingFunction>
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="undoFlashView">
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0" DoubleKeyFrame.Value="20" />
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0:0:0.7" DoubleKeyFrame.Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <ElasticEase EasingFunctionBase.EasingMode="EaseOut" ElasticEase.Springiness="3" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="undoFlashView">
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0" DoubleKeyFrame.Value="1.5">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0:0:0.7" DoubleKeyFrame.Value="1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CubicEase EasingFunctionBase.EasingMode="EaseOut" />
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Base" />
+                <VisualState x:Name="UndoFlash">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="undoFlashView">
+                            <DiscreteObjectKeyFrame ObjectKeyFrame.KeyTime="0" ObjectKeyFrame.Value="{x:Static Visibility.Visible}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="undoFlashView">
+                            <EasingDoubleKeyFrame DoubleKeyFrame.KeyTime="0" DoubleKeyFrame.Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <VisualStateManager.CustomVisualStateManager>
+            <ExtendedVisualStateManager />
+        </VisualStateManager.CustomVisualStateManager>
+        <ContentControl ContentControl.Name="ActiveItem" FrameworkElement.UseLayoutRounding="True" UIElement.Focusable="False" ContentControl.Content UIElement.IsEnabled="{Binding MainContentEnabled}" FrameworkElement.FocusVisualStyle="{x:Null}" />
+        <Grid>
+            <UIElement.Visibility>
+                <Binding>
+                    AppContext.FeaturePreview.IsStaffModeEnabled
+                    <Binding.Converter>
+                        <ui:BooleanToHiddenVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.Visibility>
+            <Path Shape.Fill="#FF333333" Path.Data="M0,0L40,0 0,40z" />
+            <Path Shape.Fill="{StaticResource GitHubAccentBrush}" UIElement.Opacity="0.5" Path.Data="M20.006,31.444L20.006,25.981C20.002,24.394 19.332,23.557 18.678,23.114 22.248,22.744 26.065,21.464 26.065,15.292 26.065,13.565 25.45,12.155 24.439,11.048 24.601,10.649 25.143,9.042 24.284,6.864 24.284,6.864 22.956,6.438 19.936,8.485 18.674,8.133 17.321,7.958 15.978,7.952 14.635,7.958 13.282,8.133 12.02,8.485 9,6.439 7.673,6.865 7.673,6.865 6.813,9.043 7.355,10.65 7.518,11.049 6.507,12.156 5.891,13.567 5.891,15.293 5.891,21.464 9.716,22.757 13.287,23.128 12.778,23.472 12.266,24.054 12.059,25.03 11.373,25.367 9.189,26.182 7.872,23.927 7.872,23.927 7.135,22.587 5.733,22.487 5.733,22.487 4.368,22.47 5.637,23.337 5.637,23.337 6.552,23.766 7.186,25.379 7.186,25.379 8.016,28.133 11.97,27.235L11.97,31.444C5.088,29.66 0,23.425 0,15.986 0,7.157 7.158,0 15.988,0 24.817,0 31.975,7.157 31.975,15.986 31.975,23.425 26.887,29.659 20.006,31.444z" FrameworkElement.Margin="2" UIElement.Clip="M-2,-2L38,-2 -2,38z" FrameworkElement.ToolTip="Staff Mode Enabled">
+                <UIElement.Effect>
+                    <DropShadowEffect DropShadowEffect.ShadowDepth="0" DropShadowEffect.BlurRadius="20" DropShadowEffect.Color="{StaticResource GitHubAccentColor}" DropShadowEffect.RenderingBias="Quality" DropShadowEffect.Opacity="1" />
+                </UIElement.Effect>
+            </Path>
+            <Path Path.Name="InnerShadow" Shape.Fill="#FFFFFFFF" Path.Data="M40,0L40,40 0,40z" UIElement.Opacity="1" UIElement.Clip="M0,0L0,40 40,0z">
+                <UIElement.Effect>
+                    <DropShadowEffect DropShadowEffect.Direction="135" DropShadowEffect.BlurRadius="10" DropShadowEffect.Opacity="1" DropShadowEffect.ShadowDepth="1" />
+                </UIElement.Effect>
+            </Path>
+        </Grid>
+        <Grid Grid.Name="ModalViewGrid" UIElement.Visibility="Collapsed">
+            <UIElement.IsEnabled>
+                <Binding>
+                    Dialog.IsShowing
+                    <Binding.Converter>
+                        <ui:InverseBooleanConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.IsEnabled>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ColumnDefinition.Width="{DynamicResource ModalViewLeftOffsetColumnWidth}" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition RowDefinition.Height="28" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <FrameworkElement.Style>
+                <Style Style.TargetType="{x:Type Grid}">
+                    <Style.Triggers>
+                        <DataTrigger DataTrigger.Binding="{Binding ModalItemShowing}" DataTrigger.Value="True">
+                            <TriggerBase.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame ObjectKeyFrame.KeyTime="0" ObjectKeyFrame.Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation DoubleAnimation.To="1" Timeline.Duration="0:0:0.7" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </TriggerBase.EnterActions>
+                            <TriggerBase.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame ObjectKeyFrame.KeyTime="0:0:0.4" ObjectKeyFrame.Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation DoubleAnimation.To="0" Timeline.Duration="0:0:0.3" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation.EasingFunction>
+                                                <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </TriggerBase.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </FrameworkElement.Style>
+            <Rectangle Grid.RowSpan="2" Shape.Fill="#C2FFFFFF" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action CancelModalView]" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" />
+            <Grid Grid.Column="1" Grid.RowSpan="2" UIElement.ClipToBounds="True">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform />
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+                <FrameworkElement.Style>
+                    <Style Style.TargetType="{x:Type Grid}">
+                        <Style.Triggers>
+                            <DataTrigger DataTrigger.Binding="{Binding ModalItemShowing}" DataTrigger.Value="True">
+                                <TriggerBase.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation DoubleAnimation.From="100" DoubleAnimation.To="0" Timeline.BeginTime="0:0:0" Timeline.Duration="0:0:0.7" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </TriggerBase.EnterActions>
+                                <TriggerBase.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation DoubleAnimation.From="0" DoubleAnimation.To="100" Timeline.BeginTime="0:0:0" Timeline.Duration="0:0:0.3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </TriggerBase.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </FrameworkElement.Style>
+                <Rectangle Rectangle.Name="BackgroundGrid" Shape.Fill="{DynamicResource GitHubModalViewBackground}" UIElement.IsHitTestVisible="False" />
+                <Grid>
+                    <UIElement.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </UIElement.RenderTransform>
+                    <FrameworkElement.Style>
+                        <Style Style.TargetType="{x:Type Grid}">
+                            <Style.Triggers>
+                                <DataTrigger DataTrigger.Binding="{Binding ModalItemShowing}" DataTrigger.Value="True">
+                                    <TriggerBase.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation DoubleAnimation.From="40" DoubleAnimation.To="0" Timeline.BeginTime="0:0:0" Timeline.Duration="0:0:0.9" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <QuinticEase EasingFunctionBase.EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </TriggerBase.EnterActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </FrameworkElement.Style>
+                    <ContentControl ContentControl.Name="ModalContent" FrameworkElement.Margin="0,24,0,0" FrameworkElement.UseLayoutRounding="True" UIElement.Focusable="False" ContentControl.Content="{Binding ModalActiveItem}" FrameworkElement.FocusVisualStyle="{x:Null}" />
+                    <Button cal:Message.Attach="CancelModalView" FrameworkElement.Style="{StaticResource GitHubBackButton}" FrameworkElement.Margin="3,24,0,0" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro">
+                        <UIElement.Visibility>
+                            <Binding>
+                                ModalViewCanCancel
+                                <Binding.Converter>
+                                    <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                                </Binding.Converter>
+                            </Binding>
+                        </UIElement.Visibility>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Views:DialogView p4:FrameworkElement.DataContext="{Binding Dialog}" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <UIElement.Visibility>
+                <Binding>
+                    IsShowing
+                    <Binding.Converter>
+                        <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.Visibility>
+        </Views:DialogView>
+        <Views:ProgressView p4:FrameworkElement.DataContext="{Binding ProgressDialog}" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <UIElement.Visibility>
+                <Binding>
+                    IsShowing
+                    <Binding.Converter>
+                        <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.Visibility>
+        </Views:ProgressView>
+        <Views:PasswordView p4:FrameworkElement.DataContext="{Binding PasswordDialog}" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <UIElement.Visibility>
+                <Binding>
+                    IsShowing
+                    <Binding.Converter>
+                        <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.Visibility>
+        </Views:PasswordView>
+        <Views:TwoFactorView p4:FrameworkElement.DataContext="{Binding TwoFactorDialog}" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <UIElement.Visibility>
+                <Binding>
+                    IsShowing
+                    <Binding.Converter>
+                        <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                    </Binding.Converter>
+                </Binding>
+            </UIElement.Visibility>
+        </Views:TwoFactorView>
+        <StackPanel StackPanel.Orientation="Horizontal" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top">
+            <Button Button.Name="updateSoftwareButton" FrameworkElement.Margin="0,0,6,0" FrameworkElement.Style="{StaticResource UpdateSoftwareButton}" ButtonBase.Command="{Binding ShowSoftwareUpdate}">
+                <UIElement.Visibility>
+                    <Binding Binding.Path="SoftwareUpdate.UpdateAvailableAndDownloaded">
+                        <Binding.Converter>
+                            <ui:BooleanToVisibilityConverter xmlns:ui="clr-namespace:GitHub.UI;assembly=GitHub.UI" />
+                        </Binding.Converter>
+                    </Binding>
+                </UIElement.Visibility>
+            </Button>
+            <StackPanel StackPanel.Orientation="Horizontal" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.VerticalAlignment="Top">
+                <Button Button.Name="MinimizeButton" FrameworkElement.Style="{StaticResource GitHubChromeButton}" Control.IsTabStop="False" FrameworkElement.ToolTip="minimize" RenderOptions.EdgeMode="Aliased">
+                    <Path FrameworkElement.Margin="12,15,12,7" Path.Data="M0,0L0,2 7.999,2 7.999,0 0,0z" Shape.Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+                </Button>
+                <Grid>
+                    <Button Button.Name="MaximizeButton" FrameworkElement.Style="{StaticResource GitHubChromeButton}" Control.IsTabStop="False" FrameworkElement.ToolTip="maximize" RenderOptions.EdgeMode="Aliased">
+                        <Path FrameworkElement.Margin="10,8" Path.Data="M0,9.999L0,0 9.998,0 9.998,9.999 0,9.999z M8.998,3L1,3 1,8.999 8.999,8.999 8.999,3z" Shape.Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+                    </Button>
+                    <Button Button.Name="RestoreButton" FrameworkElement.Style="{StaticResource GitHubChromeButton}" Control.IsTabStop="False" FrameworkElement.ToolTip="restore" RenderOptions.EdgeMode="Aliased" UIElement.Visibility="Hidden">
+                        <Path FrameworkElement.Margin="10,8" Path.Data="M8,6.999L8,9.999 0,9.999 0,3 2,3 2,0 9.999,0 9.999,6.999 8,6.999z M1,8.999L7,8.999 7,4.999 1,4.999 1,8.999z M8.999,2L3,2 3,3 8,3 8,5.999 8.999,5.999 8.999,2z" Shape.Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+                    </Button>
+                </Grid>
+                <Button Button.Name="CloseButton" FrameworkElement.Style="{StaticResource GitHubChromeCloseButton}" Control.IsTabStop="False" FrameworkElement.ToolTip="close" RenderOptions.EdgeMode="Aliased">
+                    <Path FrameworkElement.Margin="10,8" Path.Data="M10.009,1.704L8.331,0.026 5.03,3.327 1.703,0 0,1.704 3.326,5.031 0.025,8.332 1.703,10.009 5.004,6.708 8.305,10.009 10.009,8.305 6.708,5.005" Shape.Fill="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <Views:UndoFlashView UndoFlashView.Name="undoFlashView" p4:FrameworkElement.HorizontalAlignment="Stretch" p4:FrameworkElement.VerticalAlignment="Bottom" p4:FrameworkElement.Height="45" p4:UIElement.Opacity="0" p4:UIElement.RenderTransformOrigin="0.5,0.5" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <UIElement.Effect>
+                <DropShadowEffect DropShadowEffect.BlurRadius="3" DropShadowEffect.Color="#FFE3E3E3" DropShadowEffect.Opacity="0.66" DropShadowEffect.ShadowDepth="2" />
+            </UIElement.Effect>
+        </Views:UndoFlashView>
+        <Grid Grid.Name="frameGrid">
+            <Border Border.Name="noDwmBorder" Border.BorderThickness="1" Border.BorderBrush="#FF999999" UIElement.Visibility="Hidden" UIElement.IsHitTestVisible="False" />
+            <Border Border.Name="windowFocusBorder" Border.BorderThickness="12" Border.BorderBrush="#661BA1E2" UIElement.Visibility="Hidden" UIElement.IsHitTestVisible="False" />
+            <Rectangle Rectangle.Name="top" FrameworkElement.VerticalAlignment="Top" FrameworkElement.Height="7" FrameworkElement.Margin="8,0,8,0" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="bottom" FrameworkElement.Height="7" FrameworkElement.VerticalAlignment="Bottom" FrameworkElement.Margin="8,0,8,0" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="left" FrameworkElement.HorizontalAlignment="Left" FrameworkElement.Margin="0,7,0,7" FrameworkElement.Width="8" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="right" FrameworkElement.Margin="0,7,0,7" FrameworkElement.Width="8" FrameworkElement.HorizontalAlignment="Right" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="bottomLeft" FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Bottom" FrameworkElement.Width="8" FrameworkElement.Height="7" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="bottomRight" FrameworkElement.VerticalAlignment="Bottom" FrameworkElement.Height="7" FrameworkElement.Width="8" FrameworkElement.HorizontalAlignment="Right" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="topRight" FrameworkElement.HorizontalAlignment="Right" FrameworkElement.Width="8" FrameworkElement.Height="7" FrameworkElement.VerticalAlignment="Top" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+            <Rectangle Rectangle.Name="topLeft" FrameworkElement.HorizontalAlignment="Left" FrameworkElement.Width="8" FrameworkElement.VerticalAlignment="Top" FrameworkElement.Height="7" Shape.Fill="#00000000" Shape.Stroke="{x:Null}" />
+        </Grid>
+    </Grid>
+
+</Window>
